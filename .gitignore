@@ -1,0 +1,6 @@
+/dist/
+/dist-production/
+/release/
+/.wrangler/
+/node_modules/
+*.log

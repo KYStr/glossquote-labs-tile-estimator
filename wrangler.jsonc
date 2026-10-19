@@ -1,0 +1,19 @@
+{
+  "name": "glossquote-tile-estimator",
+  "compatibility_date": "2026-10-19",
+  "workers_dev": false,
+  "preview_urls": false,
+  "send_metrics": false,
+  "routes": [{ "pattern": "tiles.glossquote.com", "custom_domain": true }],
+  "observability": {
+    "enabled": false,
+    "logs": { "enabled": false, "invocation_logs": false },
+    "traces": { "enabled": false }
+  },
+  "assets": {
+    "directory": "./dist-production",
+    "run_worker_first": false,
+    "html_handling": "none",
+    "not_found_handling": "404-page"
+  }
+}

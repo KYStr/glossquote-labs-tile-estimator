@@ -1,0 +1,6 @@
+# 鋪材用量試算 發布契約
+M1本機noindex；原路徑主要UI未驗時不得自判完整通過。M2要主代理書面GO才開始。終極目標為獨立PUBLIC KYStr/glossquote-labs-tile-estimator、免費https://tiles.glossquote.com/index.html及/en/index.html、雙語首頁互連；這些尚未發布。
+M2提供獨立dist-production、build:production/check:production/preview:production/release:check，model127.0.0.1:5215；canonical自指、reciprocal zh-Hant/en及x-default中文、robots准HTML/必要JS/CSS、恰兩語sitemap、真實visible FAQ與WebApplication JSON-LD精確CSP hashes、404noindex。_headers規則合併不可同時index/noindex；robots最長匹配驗assets，不只字串測試。
+Wrangler static-assets-only：worker glossquote-tile-estimator，custom_domain tiles.glossquote.com，assets.directory ./dist-production，html_handling none，not_found_handling 404-page，workers_dev/preview_urls/send_metrics/observability false；不加script/binding/secret/runtime。來源manifest/inventory必須在實際assets目錄外；完整部署集合與local HTTP model一致。先查本機既有官方CLI及主代理指引，不自行安裝或讀憑證。
+公開copy只審核本工具檔，無.runs/node_modules/cache/secrets/personaldata；Gitguards前後相同，branch codex/。禁止global/system auth/config改動；source archive直接固定commit產生，根為package.json，每檔比gitblob/bytes/hash，乾淨副本重跑必要gate。原對話負責push與remote commit/PUBLIC驗證，主代理獨立驗收。
+M3僅主代理序列部署及首頁published整合，verify兩語live HTTP/SEO/headers/core/navigation後交外驗。Source-only/localhost不能說上線。固定版本需外部確認才標complete，人工NOT_RUN原樣揭露；每批交付ZIP並先檢相對文件連結。

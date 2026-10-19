@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <title>鋪材用量試算：估算磁磚／板材片數與整箱數｜Gloss Tools</title>
+  <meta name="description" content="依矩形鋪設面積、扣除面積、相同尺寸磁磚或板材與可調備料假設，估算片數及整箱數。只做面積試算，不提供排版或施工建議。">
+  <link rel="stylesheet" href="/styles/app.css">
+  <script type="module" src="/js/app.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#worksheet">前往工作表</a>
+  <header class="topbar"><a class="brand" href="https://glossquote.com/index.html">Gloss Tools <span>by GlossQuote</span></a><nav aria-label="頁面導覽"><a href="#model">模型與限制</a><a id="language-link" href="/en/" lang="en" aria-describedby="language-note">English</a></nav></header>
+  <main>
+    <div class="intro"><h1>鋪材用量試算</h1><p>輸入矩形鋪設區與扣除區，估算相同尺寸磁磚或板材的片數及整箱數。備料比例是可調假設，不是通用建議。</p><p id="language-note" class="hint">本版不保存草稿；有工作時，切換語言會先確認清除。</p></div>
+    <div class="workspace">
+      <section id="worksheet" aria-labelledby="worksheet-title" tabindex="-1">
+        <h2 id="worksheet-title">面積工作表</h2>
+        <p class="scope-note">只依面積估算相同尺寸磁磚／板材，不排版、不估切割，亦不保證實際採購或施工結果。</p>
+        <p id="initialization-note" class="notice" role="status">工具尚未就緒；若此訊息持續顯示，請確認 JavaScript 可用後重新載入。輸入不會送出。</p>
+        <noscript>此工具需要 JavaScript；目前無法試算，輸入不會送出。啟用後請重新載入。</noscript>
+        <form id="estimate-form" autocomplete="off" novalidate>
+          <fieldset disabled><legend>鋪設與扣除面積</legend>
+            <section id="installAreas" class="area-group" tabindex="-1" aria-labelledby="installAreas-title" aria-describedby="installAreas-help installAreas-error">
+              <div class="section-heading"><h3 id="installAreas-title">鋪設區域</h3><span id="installAreas-count" class="count">1 / 20 個區域</span></div>
+              <p id="installAreas-help" class="hint">逐列填入矩形長寬，使用公尺（m）；鋪設區需 1–20 列。</p><p id="installAreas-error" class="field-error" hidden></p>
+              <div id="installAreas-rows"></div><button id="installAreas-add" class="secondary" type="button">＋ 新增鋪設區</button>
+            </section>
+            <section id="deductionAreas" class="area-group" tabindex="-1" aria-labelledby="deductionAreas-title" aria-describedby="deductionAreas-help deductionAreas-error">
+              <div class="section-heading"><h3 id="deductionAreas-title">扣除區域</h3><span id="deductionAreas-count" class="count">0 / 20 個區域</span></div>
+              <p id="deductionAreas-help" class="hint">不鋪設的矩形面積，可有 0–20 列。只相減面積；請自行避免重疊、重複扣除或超出鋪設區。</p><p id="deductionAreas-error" class="field-error" hidden></p>
+              <div id="deductionAreas-rows"></div><button id="deductionAreas-add" class="secondary" type="button">＋ 新增扣除區</button>
+            </section>
+          </fieldset>
+          <fieldset disabled class="material-fields"><legend>單片尺寸與包裝假設</legend>
+            <p class="hint">全案使用相同尺寸磁磚或板材。以下數值皆可自行調整。</p>
+            <div class="settings-grid">
+              <div class="field"><label for="tileLengthCmRaw">鋪材長度（cm）</label><input id="tileLengthCmRaw" data-field="tileLengthCmRaw" type="text" inputmode="decimal" maxlength="32" spellcheck="false" aria-describedby="tileLengthCmRaw-help tileLengthCmRaw-error"><p id="tileLengthCmRaw-help" class="hint">ASCII 數字與句點；大於 0 至 1000 cm，最多 1 位小數。</p><p id="tileLengthCmRaw-error" class="field-error" hidden></p></div>
+              <div class="field"><label for="tileWidthCmRaw">鋪材寬度（cm）</label><input id="tileWidthCmRaw" data-field="tileWidthCmRaw" type="text" inputmode="decimal" maxlength="32" spellcheck="false" aria-describedby="tileWidthCmRaw-help tileWidthCmRaw-error"><p id="tileWidthCmRaw-help" class="hint">ASCII 數字與句點；大於 0 至 1000 cm，最多 1 位小數。</p><p id="tileWidthCmRaw-error" class="field-error" hidden></p></div>
+              <div class="field"><label for="boxPiecesRaw">每箱片數</label><input id="boxPiecesRaw" data-field="boxPiecesRaw" type="text" inputmode="numeric" value="10" maxlength="32" spellcheck="false" aria-describedby="boxPiecesRaw-help boxPiecesRaw-error"><p id="boxPiecesRaw-help" class="hint">ASCII 整數，1–1000；不接受小數點。</p><p id="boxPiecesRaw-error" class="field-error" hidden></p></div>
+              <div class="field"><label for="reservePercentRaw">備料假設（%）</label><input id="reservePercentRaw" data-field="reservePercentRaw" type="text" inputmode="decimal" value="10.0" maxlength="32" spellcheck="false" aria-describedby="reservePercentRaw-help reservePercentRaw-error"><p id="reservePercentRaw-help" class="hint">ASCII 數字與句點；0–50%，最多 1 位小數。10.0% 是初始假設，並非通用建議。</p><p id="reservePercentRaw-error" class="field-error" hidden></p></div>
+            </div>
+            <p class="hint">只接受 ASCII 數字與句點。若手機鍵盤輸出逗號或全形符號，請改用句點；工具不會自動改寫草稿。</p>
+          </fieldset>
+          <div class="action-bar"><button id="calculate" class="primary" type="submit" disabled>試算用量</button><button id="clear" class="quiet" type="button" disabled>清除</button></div>
+        </form>
+      </section>
+      <aside class="result-panel" aria-labelledby="result-title"><h2 id="result-title">估算結果</h2>
+        <p id="estimate-status" role="status" aria-live="polite" aria-atomic="true">填入鋪設面積與單片尺寸後試算。</p><div id="result-values"></div>
+        <div id="result-notes" hidden><p class="scope-note">備料比例是可調假設。面積只依矩形加總；沒有排版、切割或損耗模型，不保證實際採購數量與施工結果。</p><p class="hint">m² 以正值 half-up 顯示至小數第 2 位；微小面積可能顯示 0.00 m²。片數與箱數依精確 mm² 計算。</p></div>
+        <section id="report-section" hidden><label for="report" class="report-label">唯讀文字報告</label><p id="report-help" class="hint">可在此手動選取文字；修改任一輸入會立即清除舊報告。</p><textarea id="report" readonly rows="16" wrap="soft" spellcheck="false" aria-describedby="report-help"></textarea></section>
+      </aside>
+    </div>
+    <section id="model" class="model" aria-labelledby="model-title"><h2 id="model-title">模型與限制</h2><p>鋪設總面積扣去扣除總面積，必須大於零。基本片數 = 淨面積 ÷ 單片面積，向上取整。含備料片數依「淨面積 ×（1 + 備料百分比）÷ 單片面積」向上取整，再依每箱片數向上取整箱數。整箱餘片是購買片數扣去含備料片數。</p><p>不提供施工、結構、價格、稅或安裝費建議。輸入只在此頁面處理，不保存、不放入網址、不上傳；初次載入仍需下載網站檔案。</p><div class="faq"><h3>常見問題</h3><h4>這會算出精確採購數量嗎？</h4><p>不會。它只依總面積估算；沒有排版、切割或施工損耗模型，不能保證實際數量。</p><h4>預設 10% 備料是建議嗎？</h4><p>不是。它只是可編輯的初始假設，請按自己的情況決定；工具不提供通用比例。</p><h4>扣除區要標出位置嗎？</h4><p>不用，但工具只把扣除矩形的面積相加後相減，不判斷它們是否重疊或是否落在鋪設區內；請自行避免重複扣除。</p><h4>離線能用嗎？</h4><p>已載入頁面可繼續試算；離線重新載入沒有保證，因為工具沒有離線快取功能。</p></div></section>
+  </main>
+  <footer><a href="https://glossquote.com/index.html">返回 Gloss Tools 首頁</a><p>本版不保存資料。離開或重新載入頁面會清除試算。</p></footer>
+  <dialog id="confirm-dialog" aria-labelledby="confirm-title" aria-describedby="confirm-body"><h2 id="confirm-title">清除這份試算？</h2><p id="confirm-body">會清除所有區域、尺寸、假設與結果。</p><div class="dialog-actions"><button id="confirm-cancel" class="secondary" type="button" disabled>取消，保留內容</button><button id="confirm-accept" class="primary" type="button" disabled>清除所有內容</button></div></dialog>
+</body>
+</html>

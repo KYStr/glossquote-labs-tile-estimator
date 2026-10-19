@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "sourceCandidate": "ce30daabd509d3919d45dba29ce20f5802dedf9d55f375c9835535a63cd68f68",
+  "files": [
+    {
+      "path": "public/en/index.html",
+      "bytes": 9564,
+      "sha256": "5368da7cde5ac3acbe2abeb4641978c54a46231311dd402b4cee60fd6e38c8ad"
+    },
+    {
+      "path": "public/index.html",
+      "bytes": 9198,
+      "sha256": "6ac01cbb224027d3ff723a4a96aaafffa142a2615077f015d19604475969fa8a"
+    },
+    {
+      "path": "public/js/app.mjs",
+      "bytes": 6486,
+      "sha256": "871f4448c9ae90fe2734be2eab5da28f28479979e1de6e4dffaf58f518de9ff8"
+    },
+    {
+      "path": "public/js/core/report.mjs",
+      "bytes": 6805,
+      "sha256": "fb018cbc312490641cdda2898cff2b2c0f61b2e06d8c1ae8811ac6c6d0a2c942"
+    },
+    {
+      "path": "public/js/core/schema.mjs",
+      "bytes": 5590,
+      "sha256": "8ae994e1e85ad60d2d6dbe5ddbe4c9ee7ad60fb7ca0cd9159e29f6d741749630"
+    },
+    {
+      "path": "public/js/core/tile-estimator.mjs",
+      "bytes": 3327,
+      "sha256": "5c15372ced688f85d4f220f446a57bf1ecfddfd112a6e7f22c7995def83df543"
+    },
+    {
+      "path": "public/js/messages.mjs",
+      "bytes": 6572,
+      "sha256": "27e99d1a53e050a6b9056deb76fef41ed832072b7b839b799e00a7319a86ea88"
+    },
+    {
+      "path": "public/js/render.mjs",
+      "bytes": 4524,
+      "sha256": "b439f686f4977485efea60862c9c7336f004b80b8f8a5469c148be861c5744dd"
+    },
+    {
+      "path": "public/js/state.mjs",
+      "bytes": 3307,
+      "sha256": "74cfe7165a60bc1301362048e54d2ac9191a2ecf3f0cc09978774986548f7380"
+    },
+    {
+      "path": "public/styles/app.css",
+      "bytes": 8689,
+      "sha256": "1a6409c1e5e2d47e82e204984eee3d681e32d969b6163e1a3193ebe581b76087"
+    }
+  ]
+}

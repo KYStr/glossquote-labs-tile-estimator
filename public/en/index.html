@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <title>Tile and Panel Usage Estimator: Estimate Pieces and Boxes | Gloss Tools</title>
+  <meta name="description" content="Estimate same-size tile or panel and full-box counts from rectangular installed and deducted areas, dimensions, and an editable reserve assumption. Area estimate only; no layout or installation advice.">
+  <link rel="stylesheet" href="/styles/app.css">
+  <script type="module" src="/js/app.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#worksheet">Skip to worksheet</a>
+  <header class="topbar"><a class="brand" href="https://glossquote.com/en/index.html">Gloss Tools <span>by GlossQuote</span></a><nav aria-label="Page navigation"><a href="#model">Model and limits</a><a id="language-link" href="/" lang="zh-Hant" aria-describedby="language-note">繁體中文</a></nav></header>
+  <main>
+    <div class="intro"><h1>Tile and Panel Usage Estimator</h1><p>Enter rectangular areas to estimate same-size tile or panel and full-box counts. The reserve percentage is an editable assumption, not a universal recommendation.</p><p id="language-note" class="hint">Drafts are not saved. Switching language asks to clear any work first.</p></div>
+    <div class="workspace">
+      <section id="worksheet" aria-labelledby="worksheet-title" tabindex="-1"><h2 id="worksheet-title">Area worksheet</h2>
+        <p class="scope-note">An area estimate for same-size tiles or panels. No layout or cutting plan is provided; purchase and installation outcomes are not guaranteed.</p>
+        <p id="initialization-note" class="notice" role="status">The tool is not ready. If this message remains, check that JavaScript is available and reload. Inputs will not be submitted.</p>
+        <noscript>This tool needs JavaScript. Calculation is unavailable and inputs will not be submitted. Enable it and reload to continue.</noscript>
+        <form id="estimate-form" autocomplete="off" novalidate>
+          <fieldset disabled><legend>Installed and deducted areas</legend>
+            <section id="installAreas" class="area-group" tabindex="-1" aria-labelledby="installAreas-title" aria-describedby="installAreas-help installAreas-error">
+              <div class="section-heading"><h3 id="installAreas-title">Installed areas</h3><span id="installAreas-count" class="count">1 / 20 areas</span></div>
+              <p id="installAreas-help" class="hint">Enter each rectangle in meters (m). Use 1–20 installed areas.</p><p id="installAreas-error" class="field-error" hidden></p>
+              <div id="installAreas-rows"></div><button id="installAreas-add" class="secondary" type="button">＋ Add installed area</button>
+            </section>
+            <section id="deductionAreas" class="area-group" tabindex="-1" aria-labelledby="deductionAreas-title" aria-describedby="deductionAreas-help deductionAreas-error">
+              <div class="section-heading"><h3 id="deductionAreas-title">Deducted areas</h3><span id="deductionAreas-count" class="count">0 / 20 areas</span></div>
+              <p id="deductionAreas-help" class="hint">Rectangles that will not be covered; 0–20 areas. Only their areas are subtracted. Avoid overlap, repeated deductions and areas outside the installed space.</p><p id="deductionAreas-error" class="field-error" hidden></p>
+              <div id="deductionAreas-rows"></div><button id="deductionAreas-add" class="secondary" type="button">＋ Add deducted area</button>
+            </section>
+          </fieldset>
+          <fieldset disabled class="material-fields"><legend>Piece size and packaging assumptions</legend><p class="hint">Use the same tile or panel dimensions throughout. You can edit all values below.</p>
+            <div class="settings-grid">
+              <div class="field"><label for="tileLengthCmRaw">Material length (cm)</label><input id="tileLengthCmRaw" data-field="tileLengthCmRaw" type="text" inputmode="decimal" maxlength="32" spellcheck="false" aria-describedby="tileLengthCmRaw-help tileLengthCmRaw-error"><p id="tileLengthCmRaw-help" class="hint">ASCII digits and a period; greater than 0 up to 1000 cm, up to 1 decimal.</p><p id="tileLengthCmRaw-error" class="field-error" hidden></p></div>
+              <div class="field"><label for="tileWidthCmRaw">Material width (cm)</label><input id="tileWidthCmRaw" data-field="tileWidthCmRaw" type="text" inputmode="decimal" maxlength="32" spellcheck="false" aria-describedby="tileWidthCmRaw-help tileWidthCmRaw-error"><p id="tileWidthCmRaw-help" class="hint">ASCII digits and a period; greater than 0 up to 1000 cm, up to 1 decimal.</p><p id="tileWidthCmRaw-error" class="field-error" hidden></p></div>
+              <div class="field"><label for="boxPiecesRaw">Pieces per box</label><input id="boxPiecesRaw" data-field="boxPiecesRaw" type="text" inputmode="numeric" value="10" maxlength="32" spellcheck="false" aria-describedby="boxPiecesRaw-help boxPiecesRaw-error"><p id="boxPiecesRaw-help" class="hint">ASCII integer, 1–1000; no decimal point.</p><p id="boxPiecesRaw-error" class="field-error" hidden></p></div>
+              <div class="field"><label for="reservePercentRaw">Reserve assumption (%)</label><input id="reservePercentRaw" data-field="reservePercentRaw" type="text" inputmode="decimal" value="10.0" maxlength="32" spellcheck="false" aria-describedby="reservePercentRaw-help reservePercentRaw-error"><p id="reservePercentRaw-help" class="hint">ASCII digits and a period; 0–50%, up to 1 decimal. The initial 10.0% is an assumption, not a universal recommendation.</p><p id="reservePercentRaw-error" class="field-error" hidden></p></div>
+            </div><p class="hint">Use ASCII digits and a period. If your keyboard gives a comma or full-width symbols, use a period instead. The tool does not rewrite drafts.</p>
+          </fieldset>
+          <div class="action-bar"><button id="calculate" class="primary" type="submit" disabled>Calculate estimate</button><button id="clear" class="quiet" type="button" disabled>Clear</button></div>
+        </form>
+      </section>
+      <aside class="result-panel" aria-labelledby="result-title"><h2 id="result-title">Estimate</h2><p id="estimate-status" role="status" aria-live="polite" aria-atomic="true">Add an installed area and tile dimensions, then calculate.</p><div id="result-values"></div>
+        <div id="result-notes" hidden><p class="scope-note">Reserve is an editable assumption. Areas are summed by rectangle only. No layout, cutting or loss model is provided, and purchase or installation outcomes are not guaranteed.</p><p class="hint">m² values use positive half-up rounding to two decimals. A tiny area may display as 0.00 m². Piece and box counts use exact mm².</p></div>
+        <section id="report-section" hidden><label for="report" class="report-label">Read-only text report</label><p id="report-help" class="hint">Select text here manually. Editing any input immediately clears the old report.</p><textarea id="report" readonly rows="16" wrap="soft" spellcheck="false" aria-describedby="report-help"></textarea></section>
+      </aside>
+    </div>
+    <section id="model" class="model" aria-labelledby="model-title"><h2 id="model-title">Model and limits</h2><p>The installed area minus the deducted area must be positive. The base count is net area ÷ piece area, rounded up. The reserve count is net area × (1 + reserve percentage) ÷ piece area, rounded up. Divide that count by pieces per box and round up again for full boxes. Extra pieces are the purchased count minus the reserve count.</p><p>No construction, structural, price, tax or installation-cost advice is provided. Inputs stay in this page; they are not saved, put in a URL or uploaded. Initial loading still downloads website files.</p><div class="faq"><h3>Frequently asked questions</h3><h4>Does this give an exact purchase quantity?</h4><p>No. It estimates from total area and does not model layout, cuts, or installation loss, so it cannot guarantee the amount you need.</p><h4>Is the default 10% reserve a recommendation?</h4><p>No. It is an editable starting assumption, not a universal recommendation.</p><h4>Do deducted areas need positions?</h4><p>No. The tool subtracts their summed areas and does not detect overlap or check whether they lie inside an installed area. Avoid subtracting the same space twice.</p><h4>Can I use it offline?</h4><p>A page that is already loaded can calculate. Offline reload is not guaranteed because the tool does not provide offline caching.</p></div></section>
+  </main>
+  <footer><a href="https://glossquote.com/en/index.html">Back to Gloss Tools</a><p>This version does not save data. Leaving or reloading the page clears the estimate.</p></footer>
+  <dialog id="confirm-dialog" aria-labelledby="confirm-title" aria-describedby="confirm-body"><h2 id="confirm-title">Clear this estimate?</h2><p id="confirm-body">This clears all areas, dimensions, assumptions and results.</p><div class="dialog-actions"><button id="confirm-cancel" class="secondary" type="button" disabled>Cancel, keep work</button><button id="confirm-accept" class="primary" type="button" disabled>Clear all inputs</button></div></dialog>
+</body>
+</html>
